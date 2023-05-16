@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :user, only: [:show]
 
-  resources :event
+  resources :events
+
+  
 end

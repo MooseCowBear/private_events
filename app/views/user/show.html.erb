@@ -1,5 +1,7 @@
 <h1>Events</h1>
-<p><%= @user.username %></p>
+<p>Hello, <%= @user.username %></p>
+
+<%= link_to "add event", new_event_path %>
 
 <% if @user.created_events.empty? %>
   <p>You have not scheduled any events.</p>
