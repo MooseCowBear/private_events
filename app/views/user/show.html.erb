@@ -1,0 +1,16 @@
+<h1>Events</h1>
+<p><%= @user.username %></p>
+
+<% if @user.created_events.empty? %>
+  <p>You have not scheduled any events.</p>
+<% else %>
+  <ul class="events">
+    <% @user.created_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event %>
+        <%= event.event_date %>
+        <%= event.location %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

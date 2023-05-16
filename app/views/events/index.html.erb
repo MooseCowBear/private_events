@@ -1,5 +1,7 @@
 <h1>Events</h1>
 
+<%= link_to current_user.username, current_user %>
+
 <% if @events.empty? %>
   <%= "There are no events scheduled." %>
 <% end %>
