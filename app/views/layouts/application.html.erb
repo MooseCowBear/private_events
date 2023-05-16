@@ -12,12 +12,13 @@
 
   <body>
     <header>
-      <h2><%= link_to "PrivateEvents", root_path %></h2>
+      <h2><%= link_to 'PrivateEvents', root_path %></h2>
       <% if user_signed_in? %> 
         <%= link_to 'My Events', current_user %>
         <%= link_to 'Edit Account', edit_user_registration_path %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Sign In', new_user_session_path %>
+        <%= button_to 'Sign In', new_user_session_path %>
       <% end %>
     </header>
     <main>
