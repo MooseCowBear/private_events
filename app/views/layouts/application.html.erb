@@ -11,8 +11,21 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header>
+      <h2><%= link_to "PrivateEvents", root_path %></h2>
+      <% if user_signed_in? %> 
+        <%= link_to 'My Events', current_user %>
+        <%= link_to 'Edit Account', edit_user_registration_path %>
+      <% else %>
+        <%= link_to 'Sign In', new_user_session_path %>
+      <% end %>
+    </header>
+    <main>
+      <div class="flash">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>
