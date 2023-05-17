@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :require_login, only: [:new, :create, :update, :destroy]
 
+  validates_presence_of :name, :event_date, :event_time, :location
+
   def index
     @events = Event.all
   end
@@ -13,7 +15,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  #maybe this is where the guest list gets altered...
   def create
     @event = current_user.created_events.new(event_params)
 
