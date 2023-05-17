@@ -16,3 +16,18 @@
     <% end %>
   </ul>
 <% end %>
+
+<h3>You attended events</h3>
+<% if @user.attended_events.empty? %>
+  <p>You do not have any events to attend.</p>
+<% else %>
+  <ul class="events">
+    <% @user.attended_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event %>
+        <%= event.event_date %>
+        <%= event.location %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

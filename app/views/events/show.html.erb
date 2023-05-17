@@ -7,6 +7,29 @@
 
   <p class="description"><%= @event.description %></p>
 
+  <h3>Guess List</h3>
+  <ul>
+  <% @event.attendees.each do |attendee| %>
+    <li>
+      <%= attendee.username %>
+    </li>
+  <% end %>
+  </ul>
+
+  <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
+  <% if attending %>
+    <p>you were marked as attending</p>
+    <p><%= attending %></p>
+    <%#= button_to 'Remove Attendance destroy', event_guest_list_path(@event.id, attending.id), method: :destroy %>
+    <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "Are you sure?"
+                        } %>
+  <% else %>
+    <p>you were marked as NOT attending</p>
+    <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+  <% end %>
+
   <% if @event.created_by?(current_user) %>
     <ul class="post__actions">
       <li><%= link_to "Edit", edit_event_path(@event) %></li>

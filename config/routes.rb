@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :user, only: [:show]
 
-  resources :events
+  resources :events do
+    resources :guest_lists, only: [:create, :destroy]
+  end
 
-  
+  post '/events/:event_id/guest_lists/:id' => "guest_lists#destroy"
 end
