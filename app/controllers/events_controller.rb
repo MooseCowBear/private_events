@@ -13,6 +13,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  #maybe this is where the guest list gets altered...
   def create
     @event = current_user.created_events.new(event_params)
 
