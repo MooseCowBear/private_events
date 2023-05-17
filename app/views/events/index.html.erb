@@ -8,7 +8,7 @@
     <% @events.each do |event| %>
       <li>
         <%= link_to event.name, event %>
-        <%= event.event_date %>
+        <%= event.formatted_date %>
         <%= event.location %>
       </li>
     <% end %>

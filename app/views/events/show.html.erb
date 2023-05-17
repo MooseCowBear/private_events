@@ -2,7 +2,7 @@
   
   <div>
     <h1><%= @event.name %></h1>
-    <p><%= @event.event_date %>
+    <p><%= @event.formatted_date %>
   </div>
 
   <p class="description"><%= @event.description %></p>
@@ -18,15 +18,12 @@
 
   <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
   <% if attending %>
-    <p>you were marked as attending</p>
-    <p><%= attending %></p>
     <%#= button_to 'Remove Attendance destroy', event_guest_list_path(@event.id, attending.id), method: :destroy %>
     <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
                           turbo_method: :delete,
                           turbo_confirm: "Are you sure?"
                         } %>
   <% else %>
-    <p>you were marked as NOT attending</p>
     <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
   <% end %>
 
