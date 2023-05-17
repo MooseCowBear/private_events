@@ -3,6 +3,7 @@
 
 <%= link_to "add event", new_event_path %>
 
+<h3>Created Events</h3>
 <% if @user.created_events.empty? %>
   <p>You have not scheduled any events.</p>
 <% else %>
@@ -18,11 +19,11 @@
 <% end %>
 
 <h3>Upcoming Events</h3>
-<% if @user.attended_events.empty? %>
+<% if @user.attended_events.upcoming.empty? %>
   <p>You do not have any upcoming events.</p>
 <% else %>
   <ul class="events">
-    <% @user.attended_events.each do |event| %>
+    <% @user.attended_events.upcoming.each do |event| %>
       <li>
         <%= link_to event.name, event %>
         <%= event.event_date %>
@@ -33,4 +34,17 @@
 <% end %>
 
 <h3>Past Events</h3>
+<% if @user.attended_events.past.empty? %>
+  <p>You do not have any past events.</p>
+<% else %>
+  <ul class="events">
+    <% @user.attended_events.past.each do |event| %>
+      <li>
+        <%= link_to event.name, event %>
+        <%= event.event_date %>
+        <%= event.location %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
