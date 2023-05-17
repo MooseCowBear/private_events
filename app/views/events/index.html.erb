@@ -1,11 +1,15 @@
 <h1>Events</h1>
 
 <% if @events.empty? %>
-  <%= "There are no events scheduled." %>
+  <%= "There are no events scheduled yet." %>
 <% end %>
 
+<h3>Upcoming</h3>
+<% if @events.upcoming.empty? %>
+  <p>There are no upcoming events at this time.</p>
+<% else %>
   <ul class="events">
-    <% @events.each do |event| %>
+    <% @events.upcoming.each do |event| %>
       <li>
         <%= link_to event.name, event %>
         <%= event.formatted_date %>
@@ -13,3 +17,19 @@
       </li>
     <% end %>
   </ul>
+<% end %>
+  
+<h3>Past</h3>
+<% if @events.past.empty? %>
+  <p>There are no past events at this time.</p>
+<% else %>
+  <ul class="events">
+    <% @events.past.each do |event| %>
+      <li>
+        <%= link_to event.name, event %>
+        <%= event.formatted_date %>
+        <%= event.location %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
