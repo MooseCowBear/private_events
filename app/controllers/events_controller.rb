@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
   before_action :require_login, only: [:new, :create, :update, :destroy]
 
-  validates_presence_of :name, :event_date, :event_time, :location
-
   def index
     @events = Event.all
   end
