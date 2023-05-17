@@ -4,7 +4,8 @@ class Event < ApplicationRecord
   has_many :guest_lists, foreign_key: :attended_event_id, dependent: :destroy
   has_many :attendees, through: :guest_lists
 
-  scope :upcoming, -> { where("event_date.to_date >= ?", Date.today) } #requires event_date to be a date! can't process here...
+  scope :upcoming, -> { where("event_date >= ?", Date.today) } 
+  scope :past, -> { where("event_date < ?", Date.today)}
 
   def created_by?(user)
     self.creator_id == (user.try(:id) || user)
