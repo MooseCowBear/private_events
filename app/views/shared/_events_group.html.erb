@@ -1,0 +1,19 @@
+<ul class="events__wrapper">
+  <% passed_events.each do |event| %>
+    <li class="event__card">
+      <div class="event__card-header__wrapper">
+        <div class="event__card-header">
+          <%= link_to event.name, event %>
+          <%= event.formatted_date %>
+        </div>
+        <div class="event__info">
+          <p>when: <%= event.formatted_time %></p>
+          <p class="event__card-location">where: <%= event.location %></p>
+        </div>
+      </div>
+      <div class="button__wrapper">
+        <%= link_to "Details", event %>
+      </div>
+    </li>
+  <% end %>
+</ul>
