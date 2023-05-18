@@ -1,7 +1,7 @@
 <h1>Events</h1>
 
 <h3>Upcoming</h3>
-<% if @events.upcoming.size == 0 %>
+<% if @events.upcoming.empty? %>
   <p>There are no upcoming events at this time.</p>
 <% else %>
   <ul class="events">
