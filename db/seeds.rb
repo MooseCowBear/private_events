@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-#User.destroy_all
-#Event.destroy_all
-#GuestList.destroy_all
+User.destroy_all
+Event.destroy_all
+GuestList.destroy_all
 
 User.create!([{
   username: "Alice", 
@@ -30,31 +30,34 @@ User.create!([{
 
 Event.create!([{
   event_date: DateTime.new(2023,5,27,0),
-  location: "park",
+  location: "state park",
   name: "picnic",
   creator_id: 1,
-  event_time: Time.new(2023)
+  event_time: "12:00 PM".to_time,
+  description: "Come to our annual Get-To-Know-Your-Rangers event at the State Park! Food and beverages provided by local favorites."
 }, 
 {
   event_date: DateTime.new(2023,5,1,0),
   location: "town hall",
-  name: "city counsil meeting",
+  name: "city council meeting",
   creator_id: 1,
-  event_time: Time.new(2023)
+  event_time: "05:00 PM".to_time,
+  description: "The next city council meeting will be held at the newly renovated town hall. All are welcome."
 }, 
 {
   event_date: DateTime.new(2023,6,30,0),
   location: "downtown",
   name: "parade",
   creator_id: 2,
-  event_time: Time.new(2023)
+  event_time: "10:00 AM".to_time
 }, 
 {
   event_date: DateTime.new(2023,5,2,0),
   location: "track",
   name: "preview day",
   creator_id: 2,
-  event_time: Time.new(2023)
+  event_time: "9:00 AM".to_time,
+  description: "The horses are back for another year!"
 }
 ])
 

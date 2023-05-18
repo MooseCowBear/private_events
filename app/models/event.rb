@@ -9,8 +9,8 @@ class Event < ApplicationRecord
   has_many :guest_lists, foreign_key: :attended_event_id, dependent: :destroy
   has_many :attendees, through: :guest_lists
 
-  scope :upcoming, -> { where("event_date >= ?", Date.today) } 
-  scope :past, -> { where("event_date < ?", Date.today)}
+  scope :upcoming, -> { where("event_date >= ?", Date.today).order("event_date") } 
+  scope :past, -> { where("event_date < ?", Date.today).order("event_date") }
 
   def created_by?(user)
     self.creator_id == (user.try(:id) || user)
@@ -21,7 +21,7 @@ class Event < ApplicationRecord
   end
 
   def formatted_time
-    self.event_time.strftime('%I:%M %p')
+    self.event_time.strftime('%l:%M %p')
   end
 
   def upcoming?

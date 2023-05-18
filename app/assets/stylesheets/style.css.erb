@@ -60,11 +60,11 @@ a:not([class]) {
 :root {
   --neutral-100: rgb(254, 255, 255);
   --neutral-200: rgba(222, 242, 241, 0.8);
-  --neutral-300: #17252a;
+  --neutral-300: rgb(23, 37, 42);
 
   --accent-100: rgba(58, 175, 169, 0.7);
   --accent-200: rgba(0, 169, 133, 0.8);
-  --accent-300: #ffa17a;
+  --accent-300: rgb(255, 161, 122);
 }
 
 ul {
@@ -84,14 +84,6 @@ body {
   font-size: 16px;
   background-color: var(--accent-200);
   color: var(--neutral-300);
-}
-
-h1 {
-  
-}
-
-h3 {
-  margin-bottom: 0.5rem;
 }
 
 button {
@@ -190,6 +182,7 @@ header {
 
 .event-group__header {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -233,6 +226,16 @@ form {
   color: inherit;
 }
 
+.form__wrapper textarea {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--neutral-100);
+  padding: 0.2rem 0.5rem;
+  height: 200px;
+  color: inherit;
+}
+
 input[type="submit"] {
   padding: 0.5rem 1rem;
   border-radius: 15px;
@@ -242,16 +245,12 @@ input[type="submit"] {
   text-transform: uppercase;
 }
 
+.field_with_errors {
+  display: inline;
+}
+
 input[type="submit"]:hover, input[type="submit"]:focus {
   cursor: pointer;
-}
-
-input[type=checkbox] {
-  accent-color: var(--accent-200);
-}
-
-.form__wrapper.post .err-message {
-  color: salmon;
 }
 
 .flash {
@@ -271,7 +270,11 @@ input[type=checkbox] {
   padding: 1rem;
 }
 
-.event_info {
+.event__actions {
+  margin: 0.5rem 0;
+}
+
+.event__show-details__header {
   display: flex;
   justify-content: space-between;
 }
@@ -283,6 +286,14 @@ input[type=checkbox] {
 .description {
   border-top: 2px solid var(--accent-300);
   border-bottom: 2px solid var(--accent-300);
+}
+
+#error_explanation h2 {
+  font-size: 1.2rem;
+}
+
+.add-event__link {
+  color: var(--accent-300);
 }
 
 @media only screen and (max-width: 500px) {
