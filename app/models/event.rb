@@ -20,6 +20,10 @@ class Event < ApplicationRecord
     self.event_date.strftime('%D')
   end
 
+  def formatted_time
+    self.event_time.strftime('%I:%M %p')
+  end
+
   def upcoming?
     self.event_date.to_date >= Date.today
   end

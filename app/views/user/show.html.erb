@@ -1,50 +1,87 @@
-<h1>Events</h1>
-<p>Hello, <%= @user.username %></p>
+<div class="user__show">
 
-<%= link_to "add event", new_event_path %>
-
-<h3>Created Events</h3>
-<% if @user.created_events.empty? %>
-  <p>You have not scheduled any events.</p>
-<% else %>
-  <ul class="events">
-    <% @user.created_events.each do |event| %>
-      <li>
-        <%= link_to event.name, event %>
-        <%= event.formatted_date %>
-        <%= event.location %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-<h3>Upcoming Events</h3>
-<% if @user.attended_events.upcoming.empty? %>
-  <p>You do not have any upcoming events.</p>
-<% else %>
-  <ul class="events">
-    <% @user.attended_events.upcoming.each do |event| %>
-        <li>
-          <%= link_to event.name, event %>
-          <%= event.formatted_date %>
-          <%= event.location %>
+<div class="event-group__background">
+  <div class="event-group__header">
+    <h3>Events You Are Hosting</h3>
+    <%= button_to "add event", new_event_path %>
+  </div>
+  <% if @user.created_events.empty? %>
+    <p>You have not scheduled any events.</p>
+  <% else %>
+    <ul class="events__wrapper">
+      <% @user.created_events.each do |event| %>
+        <li class="event__card">
+          <div class="event__card-header__wrapper">
+            <div class="event__card-header">
+              <%= link_to event.name, event %>
+              <%= event.formatted_date %>
+            </div>
+            <div class="event__info">
+              <p>when: <%= event.formatted_time %></p>
+              <p class="event__card-location">where: <%= event.location %></p>
+            </div>
+          </div>
+          <div class="button__wrapper">
+            <%= link_to "Details", event %>
+          </div>
         </li>
-    <% end %>
-  </ul>
-<% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
-<h3>Past Events</h3>
-<% if @user.attended_events.empty? %>
-  <p>You do not have any past events.</p>
-<% else %>
-  <ul class="events">
-    <% @user.attended_events.past.each do |event| %>
-      <li>
-        <%= link_to event.name, event %>
-        <%= event.formatted_date %>
-        <%= event.location %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="event-group__background">
+  <h3>Your Upcoming Events</h3>
+  <% if @user.attended_events.upcoming.empty? %>
+    <p>You do not have any upcoming events.</p>
+  <% else %>
+    <ul class="events__wrapper">
+      <% @user.attended_events.upcoming.each do |event| %>
+        <li class="event__card">
+          <div class="event__card-header__wrapper">
+            <div class="event__card-header">
+              <%= link_to event.name, event %>
+              <%= event.formatted_date %>
+            </div>
+            <div class="event__info">
+              <p>when: <%= event.formatted_time %></p>
+              <p class="event__card-location">where: <%= event.location %></p>
+            </div>
+          </div>
+          <div class="button__wrapper">
+            <%= link_to "Learn More", event %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
+<div class="event-group__background">
+  <h3>Your Past Events</h3>
+  <% if @user.attended_events.past.empty? %>
+    <p>You do not have any past events.</p>
+  <% else %>
+    <ul class="events__wrapper">
+      <% @user.attended_events.upcoming.each do |event| %>
+        <li class="event__card">
+          <div class="event__card-header__wrapper">
+            <div class="event__card-header">
+              <%= link_to event.name, event %>
+              <%= event.formatted_date %>
+            </div>
+            <div class="event__info">
+              <p>when: <%= event.formatted_time %></p>
+              <p class="event__card-location">where: <%= event.location %></p>
+            </div>
+          </div>
+          <div class="button__wrapper">
+            <%= link_to "Learn More", event %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+</div>

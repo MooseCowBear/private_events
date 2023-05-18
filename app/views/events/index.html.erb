@@ -1,31 +1,57 @@
-<h1>Events</h1>
+<div class="events__index">
 
-<h3>Upcoming</h3>
-<% if @events.upcoming.empty? %>
-  <p>There are no upcoming events at this time.</p>
-<% else %>
-  <ul class="events">
-    <% @events.upcoming.each do |event| %>
-      <li>
-        <%= link_to event.name, event %>
-        <%= event.formatted_date %>
-        <%= event.location %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-  
-<h3>Past</h3>
-<% if @events.past.empty? %>
-  <p>There are no past events at this time.</p>
-<% else %>
-  <ul class="events">
-    <% @events.past.each do |event| %>
-      <li>
-        <%= link_to event.name, event %>
-        <%= event.formatted_date %>
-        <%= event.location %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="event-group__background">
+  <h3>Upcoming Events</h3>
+  <% if @events.upcoming.empty? %>
+    <p>There are no upcoming events at this time.</p>
+  <% else %>
+    <ul class="events__wrapper">
+      <% @events.upcoming.each do |event| %>
+        <li class="event__card">
+          <div class="event__card-header__wrapper">
+            <div class="event__card-header">
+              <%= link_to event.name, event %>
+              <%= event.formatted_date %>
+            </div>
+            <div class="event__info">
+              <p>when: <%= event.formatted_time %></p>
+              <p class="event__card-location">where: <%= event.location %></p>
+            </div>
+          </div>
+          <div class="button__wrapper">
+            <%= link_to "Learn More", event %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div class="event-group__background">
+  <h3>Past Events</h3>
+  <% if @events.past.empty? %>
+    <p>There are no past events at this time.</p>
+  <% else %>
+  <ul class="events__wrapper">
+  <% @events.past.each do |event| %>
+    <li class="event__card">
+      <div class="event__card-header__wrapper">
+        <div class="event__card-header">
+          <%= link_to event.name, event %>
+          <%= event.formatted_date %>
+        </div>
+        <div class="event__info">
+          <p>when: <%= event.formatted_time %></p>
+          <p class="event__card-location">where: <%= event.location %></p>
+        </div>
+      </div>
+      <div class="button__wrapper">
+        <%= link_to "Learn More", event %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+  <% end %>
+</div>
+
+</div>

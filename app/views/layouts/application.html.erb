@@ -12,7 +12,13 @@
 
   <body>
     <header>
-      <h2><%= link_to 'PrivateEvents', root_path %></h2>
+      <div>
+        <h1><%= link_to 'PrivateEvents', root_path %></h1>
+        <% if user_signed_in? %>
+          <p class="greeting">Hello, <%= current_user.username %></p>
+        <% end %>
+      </div>
+      <div class="header__links">
       <% if user_signed_in? %> 
         <%= link_to 'My Events', current_user %>
         <%= link_to 'Edit Account', edit_user_registration_path %>
@@ -20,6 +26,7 @@
       <% else %>
         <%= button_to 'Sign In', new_user_session_path %>
       <% end %>
+      </div>
     </header>
     <main>
       <div class="flash">
