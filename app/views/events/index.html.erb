@@ -1,11 +1,7 @@
 <h1>Events</h1>
 
-<% if @events.empty? %>
-  <%= "There are no events scheduled yet." %>
-<% end %>
-
 <h3>Upcoming</h3>
-<% if @events.upcoming.empty? %>
+<% if @events.upcoming.size == 0 %>
   <p>There are no upcoming events at this time.</p>
 <% else %>
   <ul class="events">

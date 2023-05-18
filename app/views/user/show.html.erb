@@ -24,17 +24,17 @@
 <% else %>
   <ul class="events">
     <% @user.attended_events.upcoming.each do |event| %>
-      <li>
-        <%= link_to event.name, event %>
-        <%= event.formatted_date %>
-        <%= event.location %>
-      </li>
+        <li>
+          <%= link_to event.name, event %>
+          <%= event.formatted_date %>
+          <%= event.location %>
+        </li>
     <% end %>
   </ul>
 <% end %>
 
 <h3>Past Events</h3>
-<% if @user.attended_events.past.empty? %>
+<% if @user.attended_events.empty? %>
   <p>You do not have any past events.</p>
 <% else %>
   <ul class="events">
