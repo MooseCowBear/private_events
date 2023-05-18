@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "events#index"
 
-  resources :user, only: [:show]
+  resources :user, only: [:show, :index]
 
   resources :events do
     resources :guest_lists, only: [:create, :destroy]
