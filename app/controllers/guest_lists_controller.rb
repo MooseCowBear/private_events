@@ -1,18 +1,15 @@
 class GuestListsController < ApplicationController
-  #where will the links to these actions go? in the user's show page
   before_action :find_event, :find_attendee
   before_action :require_login, only: [:create, :destroy]
 
   def create
-    puts "in the create action"
-    @event.attendees << @attendee #if no curr user, then will fail..
-    redirect_to current_user #is this what you want?
+    @event.attendees << @attendee 
+    redirect_to current_user 
   end
 
   def destroy 
-    puts "in the destroy action"
     @event.attendees.destroy(@attendee)
-    redirect_to current_user #same as above
+    redirect_to current_user 
   end
 
   private 

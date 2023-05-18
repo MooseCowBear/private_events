@@ -33,7 +33,6 @@
     <% if current_user %>
       <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
       <% if attending %>
-        <%#= button_to 'Remove Attendance destroy', event_guest_list_path(@event.id, attending.id), method: :destroy %>
         <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
                               turbo_method: :delete,
                               turbo_confirm: "Are you sure?"
