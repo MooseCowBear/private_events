@@ -30,7 +30,7 @@
       </ul>
     </div>
 
-    <% if current_user %>
+    <% if current_user && @event.upcoming? %>
       <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
       <% if attending %>
         <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
