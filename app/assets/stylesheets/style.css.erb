@@ -99,6 +99,8 @@ button {
   border-radius: 10px;
   padding: 0.3rem;
   background-color: transparent;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 button:hover {
@@ -246,10 +248,42 @@ input[type="submit"]:hover, input[type="submit"]:focus {
   cursor: pointer;
 }
 
+input[type=checkbox] {
+  accent-color: var(--accent-200);
+}
+
 .form__wrapper.post .err-message {
   color: salmon;
 }
 
 .flash {
-  margin: 1rem;
+  margin: 0 1rem;
 }
+
+.event__show-details {
+  background-color: var(--neutral-100);
+  padding: 1rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event-show__wrapper {
+  padding: 1rem;
+}
+
+.event_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  padding: 0.5rem;
+}
+
+.description {
+  border-top: 2px solid var(--accent-300);
+  border-bottom: 2px solid var(--accent-300);
+}
+

@@ -1,32 +1,47 @@
 <div class="event-show__wrapper">
   
-  <div>
-    <h1><%= @event.name %></h1>
-    <p><%= @event.formatted_date %>
-  </div>
+  <div class="event__show-details">
+    <div class="event_info">
+      <div>
+        <h2><%= @event.name %></h2>
+        <p><%= @event.formatted_date %>
+      </div>
 
-  <p class="description"><%= @event.description %></p>
-
-  <h3>Guest List</h3>
-  <ul>
-    <% @event.attendees.each do |attendee| %>
-      <li>
-        <%= attendee.username %>
-      </li>
-    <% end %>
-  </ul>
-
-  <% if current_user %>
-    <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
-    <% if attending %>
-      <%#= button_to 'Remove Attendance destroy', event_guest_list_path(@event.id, attending.id), method: :destroy %>
-      <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
-                            turbo_method: :delete,
-                            turbo_confirm: "Are you sure?"
-                          } %>
+      <div>
+        <p>when: <%= @event.formatted_time %>
+        <p>where: <%= @event.location %>
+      </div>
+    </div>
+    
+    <% if @event.description %>
+      <p class="description"><%= @event.description %></p>
     <% else %>
-      <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+      <p class="description">Organizers did not provide a description of this event.</p>
     <% end %>
+    
+    <div>
+      <h3>Guest List</h3>
+      <ul>
+        <% @event.attendees.each do |attendee| %>
+          <li>
+            <%= attendee.username %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% if current_user %>
+      <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
+      <% if attending %>
+        <%#= button_to 'Remove Attendance destroy', event_guest_list_path(@event.id, attending.id), method: :destroy %>
+        <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "Are you sure?"
+                            } %>
+      <% else %>
+        <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+      <% end %>
+  </div>
 
     <% if @event.created_by?(current_user) %>
       <ul class="post__actions">
