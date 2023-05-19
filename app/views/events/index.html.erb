@@ -1,19 +1,19 @@
 <div class="events__index">
   <div class="event-group__background">
     <h3>Upcoming Events</h3>
-    <% if @events.upcoming.empty? %>
+    <% if @events.public_upcoming.empty? %>
       <p>There are no upcoming events at this time.</p>
     <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @events.upcoming} %>
+      <%= render partial: "shared/events_group", locals: {passed_events: @events.public_upcoming} %>
     <% end %>
   </div>
 
   <div class="event-group__background">
     <h3>Past Events</h3>
-    <% if @events.past.empty? %>
+    <% if @events.public_past.empty? %>
       <p>There are no past events at this time.</p>
     <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @events.past} %>
+      <%= render partial: "shared/events_group", locals: {passed_events: @events.public_past} %>
     <% end %>
   </div>
 </div>
