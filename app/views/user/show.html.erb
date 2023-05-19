@@ -7,7 +7,7 @@
     <% if @user.created_events.empty? %>
       <p>You have not scheduled any events.</p>
     <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @user.created_events} %>
+      <%= render partial: "shared/events_group", locals: {passed_events: @user.created_events.includes([:creator]) } %>
     <% end %>
   </div>
 

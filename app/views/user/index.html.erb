@@ -1,9 +1,16 @@
 <ul class="users__wrapper"> 
-  <%=# if pass the event id param... %>
-  <% @users.reject { |user| user == Event.find(params[:event_id]).creator }.each do |user| %>
+  <% @users.reject { |user| user == @event.creator }.each do |user| %>
     <li>
       <%= user.username %>
-      <%=# need a way to check if the person is invited or not, and show appropriate button %>
+      <% invited = GuestList.exists?(attendee_id: user.id, attended_event_id: @event.id) %>
+      <% if invited && @event.upcoming? %>
+        <%= button_to "Uninvite", event_guest_list_path(@event, user.id), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "Are you sure?"
+                            } %>
+      <% else %>
+        <%= button_to "Invite", event_guest_lists_path(event_id: @event, user_id: user.id), method: :post %>
+      <% end %>
     </li>
   <% end %>
 </ul>

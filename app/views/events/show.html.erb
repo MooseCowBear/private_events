@@ -33,16 +33,27 @@
       <% end %>
     </div>
 
-    
-    <% if current_user && @event.upcoming? %>
-      <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
-      <% if attending %>
-        <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
-                              turbo_method: :delete,
-                              turbo_confirm: "Are you sure?"
-                            } %>
-      <% else %>
-        <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+    <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
+    <% unless @event.private %>
+      <% if current_user && @event.upcoming? %>
+        <% if attending %>
+          <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Are you sure?"
+                              } %>
+        <% else %>
+          <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if @event.created_by?(current_user) %>
+        <p>owner</p>
+      <% elsif attending %>
+        <% if attending.accepted %>
+          <p>this person has accepted so should display un-attend button</p>
+        <% else %>
+          <p>this person has not accepted, so should display attend button</p>
+        <% end %>
       <% end %>
     <% end %>
   </div>

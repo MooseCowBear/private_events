@@ -1,6 +1,7 @@
 class UserController < ApplicationController
   def index
     @users = User.all
+    @event = Event.find(params[:invite_only_event].to_i)
   end
 
   def show

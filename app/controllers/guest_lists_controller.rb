@@ -19,7 +19,11 @@ class GuestListsController < ApplicationController
   end
 
   def find_attendee
-    @attendee = current_user
+    @attendee = invitee || current_user 
+  end
+
+  def invitee 
+    User.find(params[:user_id]) if params[:user_id]
   end
 
   def require_login
