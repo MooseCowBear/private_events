@@ -3,7 +3,12 @@
     <li class="event__card">
       <div class="event__card-header__wrapper">
         <div class="event__card-header">
-          <%= link_to event.name, event %>
+          <div class="event__title">
+            <%= link_to event.name, event %>
+            <% if event.private %>
+              <span class="private-event"> - private</span>
+            <% end %>
+          </div>
           <%= event.formatted_date %>
         </div>
         <div class="event__info">
@@ -13,6 +18,9 @@
       </div>
       <div class="actions__wrapper">
         <%= link_to "Details", event %>
+        <% if event.private %>
+          <%= link_to "Set Guest List", root_path %>
+        <% end %>
       </div>
     </li>
   <% end %>
