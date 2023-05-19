@@ -1,16 +1,18 @@
-<ul class="users__wrapper"> 
-  <% @users.reject { |user| user == @event.creator }.each do |user| %>
-    <li>
-      <%= user.username %>
-      <% invited = GuestList.exists?(attendee_id: user.id, attended_event_id: @event.id) %>
-      <% if invited && @event.upcoming? %>
-        <%= button_to "Uninvite", event_guest_list_path(@event, user.id), data: {
-                              turbo_method: :delete,
-                              turbo_confirm: "Are you sure?"
-                            } %>
-      <% else %>
-        <%= button_to "Invite", event_guest_lists_path(event_id: @event, user_id: user.id), method: :post %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="users_index__wrapper">
+  <ul> 
+    <% @users.reject { |user| user == @event.creator }.each do |user| %>
+      <li>
+        <%= user.username %>
+        <% invited = GuestList.exists?(attendee_id: user.id, attended_event_id: @event.id) %>
+        <% if invited && @event.upcoming? %>
+          <%= button_to "Uninvite", event_guest_list_path(@event, user.id), data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Are you sure?"
+                              } %>
+        <% else %>
+          <%= button_to "Invite", event_guest_lists_path(event_id: @event, user_id: user.id), method: :post %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
