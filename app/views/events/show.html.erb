@@ -12,7 +12,7 @@
       </div>
     </div>
     
-    <% if @event.description %>
+    <% if @event.description? %>
       <p class="description"><%= @event.description %></p>
     <% else %>
       <p class="description">Organizers did not provide a description of this event.</p>

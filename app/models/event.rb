@@ -31,4 +31,8 @@ class Event < ApplicationRecord
   def past?
     !upcoming?
   end
+
+  def description?
+    description && !description.empty?
+  end
 end
