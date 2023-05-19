@@ -33,6 +33,7 @@
       <% end %>
     </div>
 
+    
     <% if current_user && @event.upcoming? %>
       <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
       <% if attending %>
