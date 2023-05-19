@@ -1,0 +1,9 @@
+<ul class="users__wrapper"> 
+  <%=# if pass the event id param... %>
+  <% @users.reject { |user| user == Event.find(params[:event_id]).creator }.each do |user| %>
+    <li>
+      <%= user.username %>
+      <%=# need a way to check if the person is invited or not, and show appropriate button %>
+    </li>
+  <% end %>
+</ul>
