@@ -8,6 +8,9 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_created_events = @user.created_events.includes(:creator)
+    @user_upcoming_events = @user.attended_events.upcoming
+    @user_past_events = @user.attended_events.past
   end
 
   private

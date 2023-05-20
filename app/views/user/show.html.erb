@@ -4,28 +4,25 @@
       <h3>Events You Are Hosting</h3>
       <%= link_to "add event", new_event_path, class: "add-event__link" %>
     </div>
-    <% if @user.created_events.empty? %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_created_events } %>
+    <% if @user_created_events.empty? %>
       <p>You have not scheduled any events.</p>
-    <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @user.created_events.includes([:creator]) } %>
     <% end %>
   </div>
 
   <div class="event-group__background">
     <h3>Your Upcoming Events</h3>
-    <% if @user.attended_events.upcoming.empty? %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_upcoming_events } %>
+    <% if @user_upcoming_events.empty? %>
       <p>You do not have any upcoming events.</p>
-    <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @user.attended_events.upcoming} %>
     <% end %>
   </div>
 
   <div class="event-group__background">
     <h3>Your Past Events</h3>
-    <% if @user.attended_events.past.empty? %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_past_events } %>
+    <% if @user_past_events.empty? %>
       <p>You do not have any past events.</p>
-    <% else %>
-      <%= render partial: "shared/events_group", locals: {passed_events: @user.attended_events.past} %>
     <% end %>
   </div>
 </div>
