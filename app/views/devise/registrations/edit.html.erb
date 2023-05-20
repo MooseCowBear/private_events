@@ -1,4 +1,5 @@
 <div class="registration">
+  <div class="edit-account__wrapper">
   <div class="edit__section">
   
     <div class="form__wrapper auth">
@@ -52,5 +53,6 @@
     <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
     
     <%= link_to "Back", :back %>
+  </div>
   </div>
 </div>

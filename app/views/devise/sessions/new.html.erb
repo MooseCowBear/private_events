@@ -1,5 +1,6 @@
 
 <div class="registration">
+  <div>
   <div class="form__wrapper auth">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <h2>Log in</h2>
@@ -26,4 +27,5 @@
     <% end %>
   </div>
   <%= render "devise/shared/links" %>
+  </div>
 </div>

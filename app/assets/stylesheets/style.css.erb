@@ -87,10 +87,10 @@ body {
   color: var(--neutral-300);
 }
 
-button {
+button, .login-button {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
   border: 2px solid var(--neutral-300);
-  border-radius: 10px;
-  padding: 0.3rem;
   background-color: transparent;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -98,6 +98,12 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.login-button {
+  color: var(--neutral-300);
+  font-weight: 400;
+  font-size: 0.7rem;
 }
 
 header {
@@ -189,11 +195,16 @@ header {
   gap: 1rem;
 }
 
-.registration, .event__edit, .event__new {
+.registration, .edit-account__wrapper, .event__edit, .event__new {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  align-items: center;
+}
+
+.edit__section {
+  width: 100%;
 }
 
 .edit__section.cancel {
