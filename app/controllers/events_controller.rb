@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :invited, only: [:show]
 
   def index
-    @events = Event.all
+    @public_upcoming_events = Event.upcoming.public_event
+    @public_past_events = Event.past.public_event
   end
 
   def new 
