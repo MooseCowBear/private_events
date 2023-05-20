@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   private 
   def require_login
     unless user_signed_in?
-      flash[:error] = "You must sign in to add an event."
+      flash[:notice] = "You must sign in to add an event."
       redirect_to new_user_session_path
     end
   end
