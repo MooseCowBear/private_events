@@ -3,14 +3,14 @@
     <% @users.reject { |user| user == @event.creator }.each do |user| %>
       <li>
         <%= user.username %>
-        <% invited = GuestList.exists?(attendee_id: user.id, attended_event_id: @event.id) %>
+        <% invited = @event.guest_lists.find { |guest| guest.attendee_id == user.id } %>
         <% if invited && @event.upcoming? %>
-          <%= button_to "Uninvite", event_guest_list_path(@event, user.id), data: {
+          <%= button_to "Uninvite", event_guest_list_path(invited.id, event_id: @event.id, user_id: user.id), data: {
                                 turbo_method: :delete,
                                 turbo_confirm: "Are you sure?"
                               } %>
         <% else %>
-          <%= button_to "Invite", event_guest_lists_path(event_id: @event, user_id: user.id), method: :post %>
+          <%= button_to "Invite", event_guest_lists_path(event_id: @event.id, user_id: user.id), method: :post %>
         <% end %>
       </li>
     <% end %>
