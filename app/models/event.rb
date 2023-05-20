@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where("event_date >= ?", Date.today).order("event_date") } 
   scope :past, -> { where("event_date < ?", Date.today).order("event_date") }
   scope :public_event, -> { where("private = ?", false) }
+
   scope :public_upcoming, -> { public_event.upcoming }
   scope :public_past, -> { public_event.past }
 
@@ -37,5 +38,10 @@ class Event < ApplicationRecord
 
   def description?
     description && !description.empty?
+  end
+
+  def access_private?(user)
+    return true unless self.private
+    user && (self.attendees.exists?(id: user.id) || self.creator == user)
   end
 end

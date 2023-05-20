@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :update, :destroy, :show]
+  before_action :require_login, only: [:new, :create, :update, :destroy]
   before_action :invited, only: [:show]
 
   def index
@@ -59,11 +59,9 @@ class EventsController < ApplicationController
 
   def invited
     @event = Event.find(params[:id])
-    if @event.private
-      unless current_user && (@event.attendees.exists?(id: current_user.id) || @event.creator == current_user)
-        flash[:notice] = "You must be invited to view a private event."
-        redirect_to root_path
-      end
+    unless @event.access_private?(current_user) 
+      flash[:notice] = "You must be invited to view a private event."
+      redirect_to root_path
     end
   end
 end
