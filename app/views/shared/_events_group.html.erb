@@ -4,10 +4,11 @@
       <div class="event__card-header__wrapper">
         <div class="event__card-header">
           <div class="event__title">
-            <%= link_to event.name, event %>
+            <h4 class="event-name"><%= event.name %>
             <% if event.private %>
               <span class="private-event"> - private</span>
             <% end %>
+            </h4>
           </div>
           <%= event.formatted_date %>
         </div>
