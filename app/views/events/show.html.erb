@@ -21,13 +21,23 @@
     <div>
       <h3>Guest List</h3>
       <% if current_user %>
-        <ul>
-          <% @event.attendees.each do |attendee| %>
-            <li>
-              <%= attendee.username %>
-            </li>
-          <% end %>
-        </ul>
+        <% unless @event.private %>
+          <ul>
+            <% @event.attendees.each do |attendee| %>
+              <li>
+                <%= attendee.username %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <ul>
+            <% @accepted_invites.each do |attendee| %>
+              <li>
+                <%= attendee.username %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
       <% else %>
         <p>Log in to see guest list.</p>
       <% end %>

@@ -13,6 +13,9 @@ class EventsController < ApplicationController
 
   def show 
     @event = Event.find(params[:id])
+    if @event.private
+      @accepted_invites = @event.attendees.where("guest_lists.accepted = ?", true)
+    end
   end
 
   def create
