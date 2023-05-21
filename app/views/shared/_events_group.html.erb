@@ -19,7 +19,7 @@
       </div>
       <div class="actions__wrapper">
         <%= link_to "Details", event %>
-        <% if event.private && event.creator == current_user %>
+        <% if guestlist && event.private && event.creator == current_user %>
           <%= link_to "Set Guest List", user_index_path(invite_only_event: event.id), method: :get %>
         <% end %>
       </div>

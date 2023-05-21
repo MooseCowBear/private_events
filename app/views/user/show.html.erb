@@ -4,7 +4,7 @@
       <h3>Events You Are Hosting</h3>
       <%= link_to "add event", new_event_path, class: "add-event__link" %>
     </div>
-    <%= render partial: "shared/events_group", locals: { passed_events: @user_created_events } %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_created_events, guestlist: true } %>
     <% if @user_created_events.empty? %>
       <p>You have not scheduled any events.</p>
     <% end %>
@@ -12,7 +12,7 @@
 
   <div class="event-group__background">
     <h3>Your Upcoming Events</h3>
-    <%= render partial: "shared/events_group", locals: { passed_events: @user_upcoming_events } %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_upcoming_events, guestlist: false } %>
     <% if @user_upcoming_events.empty? %>
       <p>You do not have any upcoming events.</p>
     <% end %>
@@ -20,7 +20,7 @@
 
   <div class="event-group__background">
     <h3>Your Past Events</h3>
-    <%= render partial: "shared/events_group", locals: { passed_events: @user_past_events } %>
+    <%= render partial: "shared/events_group", locals: { passed_events: @user_past_events, guestlist: false } %>
     <% if @user_past_events.empty? %>
       <p>You do not have any past events.</p>
     <% end %>
