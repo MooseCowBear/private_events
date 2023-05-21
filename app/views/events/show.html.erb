@@ -19,7 +19,12 @@
     <% end %>
     
     <div>
-      <h3>Guest List</h3>
+      <div class="guest_list__header">
+        <h3>Guest List</h3>
+        <% if @event.private %>
+          <p> (confirmed)</p> 
+        <% end %>
+      </div>
       <% if current_user %>
         <% unless @event.private %>
           <ul>
