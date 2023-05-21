@@ -8,7 +8,7 @@
           <%= button_to "Uninvite", event_guest_list_path(invited.id, event_id: @event.id, user_id: user.id), data: {
                                 turbo_method: :delete,
                                 turbo_confirm: "Are you sure?"
-                              } %>
+                              }, disabled: invited.accepted  %>
         <% else %>
           <%= button_to "Invite", event_guest_lists_path(event_id: @event.id, user_id: user.id), method: :post %>
         <% end %>

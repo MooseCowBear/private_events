@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :user, only: [:show, :index]
 
   resources :events do
-    resources :guest_lists, only: [:create, :destroy]
+    resources :guest_lists, only: [:create, :destroy, :edit, :update]
   end
 
   post '/events/:event_id/guest_lists/:id' => "guest_lists#destroy"

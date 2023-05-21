@@ -42,7 +42,7 @@
                                 turbo_confirm: "Are you sure?"
                               } %>
         <% else %>
-          <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+          <%= button_to "Attend", event_guest_lists_path(@event.id), method: :post %>
         <% end %>
       <% end %>
     <% else %>
@@ -54,17 +54,14 @@
                                   turbo_confirm: "Are you sure?"
                                 } %>
           <% else %>
-            <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+            <%= button_to "Attend", event_guest_lists_path(@event.id), method: :post %>
           <% end %>
         <% end %>
       <% elsif attending %>
         <% if attending.accepted %>
-          <%= button_to "Remove Attendance", event_guest_list_path(@event.id, attending.id), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-          } %>
+          <%= button_to "Decline Invitation", event_guest_list_path(@event.id, attending.id, accept: false), method: :patch %>
         <% else %>
-          <%= button_to 'Attend', event_guest_lists_path(@event.id), method: :post %>
+          <%= button_to "Accept Invitation", event_guest_list_path(@event.id, attending.id, accept: true), method: :patch %>
         <% end %>
       <% end %>
     <% end %>

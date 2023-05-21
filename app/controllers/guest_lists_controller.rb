@@ -1,22 +1,43 @@
 class GuestListsController < ApplicationController
-  before_action :find_event, :find_attendee
+  before_action :find_attendee
   before_action :require_login, only: [:create, :destroy]
 
   def create
-    @event.attendees << @attendee 
-    redirect_to current_user 
+    @guest = Event.find(params[:event_id]).guest_lists.new(attendee_id: @attendee.id)
+
+    if @guest.save
+      flash[:notice] = "Guest list was successfully updated."
+      redirect_to current_user
+    else 
+      flash[:notice] = "Something went wrong."
+      redirect_to event_path(@event.id)
+    end
   end
 
   def destroy 
+    @event = Event.find(params[:event_id])
     @event.attendees.destroy(@attendee)
     redirect_to current_user 
   end
 
-  private 
-
-  def find_event
-    @event = Event.find(params[:event_id])
+  def edit 
+    @guest = GuestList.find(params[:id])
   end
+
+  def update
+    @guest = GuestList.find(params[:id]) 
+    #Event.find(params[:event_id]).guest_lists.find_by(attendee_id: @attendee.id)
+
+    if @guest.update(accepted: params[:accept])
+      flash[:notice] = "Thank you for your response."
+      redirect_to current_user
+    else
+      flash[:notice] = "Something went wrong."
+      redirect_to event_path(params[:event_id])
+    end
+  end
+
+  private 
 
   def find_attendee
     @attendee = invitee || current_user 
