@@ -9,8 +9,8 @@ class GuestListsController < ApplicationController
       flash[:notice] = "Guest list was successfully updated."
       redirect_to current_user
     else 
-      flash[:notice] = "Something went wrong."
-      redirect_to event_path(@event.id)
+      flash.now[:notice] = "Something went wrong."
+      render event_path(@event.id)
     end
   end
 
@@ -26,7 +26,6 @@ class GuestListsController < ApplicationController
 
   def update
     @guest = GuestList.find(params[:id]) 
-    #Event.find(params[:event_id]).guest_lists.find_by(attendee_id: @attendee.id)
 
     if @guest.update(accepted: params[:accept])
       flash[:notice] = "Thank you for your response."
