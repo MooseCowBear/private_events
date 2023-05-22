@@ -2,21 +2,26 @@ class GuestListsController < ApplicationController
   before_action :require_login, :find_attendee
 
   def create
-    @guest = Event.find(params[:event_id]).guest_lists.new(attendee_id: @attendee.id)
+    @event = Event.find(params[:event_id])
+    @guest = @event.guest_lists.new(attendee: @attendee)
+
+    if @event.private && @event.created_by?(@attendee)
+      @guest = @event.guest_lists.new(attendee: @attendee, accepted: true)
+    end
 
     if @guest.save
       flash[:notice] = "Guest list was successfully updated."
-      redirect_to current_user
     else 
       flash.now[:notice] = "Something went wrong."
-      render event_path(@event.id)
     end
+    redirect_to event_path(@event)
   end
 
   def destroy 
     @event = Event.find(params[:event_id])
     @event.attendees.destroy(@attendee)
-    redirect_to current_user 
+    flash[:notice] = "Guest list was successfully updated."
+    redirect_to event_path(@event)
   end
 
   def edit 
@@ -24,15 +29,15 @@ class GuestListsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:event_id])
     @guest = GuestList.find(params[:id]) 
 
     if @guest.update(accepted: params[:accept])
       flash[:notice] = "Thank you for your response."
-      redirect_to current_user
     else
       flash[:notice] = "Something went wrong."
-      redirect_to event_path(params[:event_id])
     end
+    redirect_to event_path(@event)
   end
 
   private 
