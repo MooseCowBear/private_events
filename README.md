@@ -1,6 +1,6 @@
 # Private Events - Rails app
 
-This is a solution to the Private Events project from the Odin Project's Rails path. 
+This is a solution to the [Private Events](https://www.theodinproject.com/lessons/ruby-on-rails-private-events) project from [the Odin Project's](https://www.theodinproject.com) Rails path. 
 
 ## Features
 
