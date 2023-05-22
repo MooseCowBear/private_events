@@ -12,7 +12,7 @@ class GuestListsController < ApplicationController
     if @guest.save
       flash[:notice] = "Guest list was successfully updated."
     else 
-      flash.now[:notice] = "Something went wrong."
+      flash[:notice] = "Something went wrong."
     end
     redirect_to event_path(@event)
   end

@@ -19,14 +19,9 @@
     <% end %>
     
     <div>
-      <div class="guest_list__header">
-        <h3>Guest List</h3>
-        <% if @event.private %>
-          <p> (confirmed)</p> 
-        <% end %>
-      </div>
       <% if current_user %>
         <% unless @event.private %>
+          <h3>Guest List</h3>
           <ul>
             <% @event.attendees.each do |attendee| %>
               <li>
@@ -35,12 +30,22 @@
             <% end %>
           </ul>
         <% else %>
+          <h3>Confirmed Guest List</h3>
           <ul>
             <% @accepted_invites.each do |attendee| %>
               <li>
                 <%= attendee.username %>
               </li>
             <% end %>
+          </ul>
+          <br>
+          <h3>Outstanding Guest List</h3>
+          <ul>
+              <% @unaccepted_invites.each do |attendee| %>
+                <li>
+                  <%= attendee.username %>
+                </li>
+              <% end %>
           </ul>
         <% end %>
       <% else %>
