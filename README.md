@@ -12,7 +12,33 @@ Scopes are used to separate events into upcoming and past.
 
 ## The database
 
+![alt text](readme_resources/db_diagram.jpg "uml diagram of databases")
+
 ## Screenshots
+
+The home page when signed out. 
+
+![alt text](readme_resources/events_index.png "home page when signed out")
+
+A user's page, with events displayed by category.
+
+![alt text](readme_resources/user_index.png "a user's page")
+
+The page of a public event when user is signed out.
+
+![alt text](readme_resources/event_show_logged_out.png "event page, logged out view")
+
+The page of a public event when user is signed in.
+
+![alt text](readme_resources/event_show_public_logged_in.png "public event page, logged in")
+
+The page of a private event when user is creator.
+
+![alt text](readme_resources/event_show_private.png "private event page")
+
+The page where a private event's invites are set. 
+
+![alt text](readme_resources/user_index.png "private event invite page")
 
 ### A note about guest lists
 
