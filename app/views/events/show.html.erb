@@ -57,7 +57,7 @@
                                 turbo_confirm: "Are you sure?"
                               } %>
         <% else %>
-          <%= button_to "Attend", event_guest_lists_path(@event), method: :post %>
+          <%= button_to "Attend", event_guest_lists_path(@event), data: { turbo_method: :post } %>
         <% end %>
       <% end %>
     <% else %>      
