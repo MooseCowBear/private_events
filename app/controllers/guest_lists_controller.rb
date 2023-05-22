@@ -1,6 +1,5 @@
 class GuestListsController < ApplicationController
-  before_action :find_attendee
-  before_action :require_login, only: [:create, :destroy]
+  before_action :require_login, :find_attendee
 
   def create
     @guest = Event.find(params[:event_id]).guest_lists.new(attendee_id: @attendee.id)
@@ -44,12 +43,5 @@ class GuestListsController < ApplicationController
 
   def invitee 
     User.find(params[:user_id]) if params[:user_id]
-  end
-
-  def require_login
-    unless user_signed_in?
-      flash[:error] = "You must sign in to alter attendance of an event."
-      redirect_to new_user_session_path
-    end
   end
 end

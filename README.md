@@ -1,24 +1,14 @@
-# README
+# Private Events - Rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a solution to the Private Events project from the Odin Project's Rails path. 
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+User authentication via the Devise Gem. 
 
-* System dependencies
+Displays events of two types: public and private. Public events are visible on the home page for anyone to view. Private events appear only on the pages of the creator and invitees. Any registered user may choose to add themselves to the guestlist of any public event. The creator of a private event determines the guestlist. Invited guests may accept or decline invitations to private events. 
 
-* Configuration
+Scopes are used to separate events into upcoming and past. 
 
-* Database creation
+## The database
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
