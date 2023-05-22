@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless user_signed_in?
-      flash[:notice] = "You must sign in to add an event."
+      flash[:notice] = "Sign in required."
       redirect_to new_user_session_path
     end
   end

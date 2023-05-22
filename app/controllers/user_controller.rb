@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+  before_action :require_login
   before_action :confirm_ownership, only: [:index]
   before_action :confirm_user, only: [:show]
 
