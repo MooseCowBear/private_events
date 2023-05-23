@@ -74,3 +74,5 @@ group :test do
 end
 
 gem 'bullet', group: 'development'
+
+gem "dockerfile-rails", ">= 1.3", :group => :development

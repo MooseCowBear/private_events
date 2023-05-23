@@ -53,3 +53,7 @@ To accept an invitation, an invited user updates the accepted column of the rele
 For public events, there is no invitation stage. Users may add themselves to an event's guest list (or remove themselves). This is handled by creating/destroying the record in the guest lists table. So, for public events, the accepted column is meaningless. 
 
 The creator of a private event is a special case. Their addition to the guest list is treated like an addition to the guest list for a public event. As the arbiter of the event's guest list, the creator does not need to be invited. 
+
+## Live
+
+Hosted with Fly.io. [Here](https://lingering-waterfall-598.fly.dev)
