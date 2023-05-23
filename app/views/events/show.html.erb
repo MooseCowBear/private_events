@@ -53,24 +53,24 @@
       <% end %>
     </div>
 
-    <% attending = current_user && @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
-    <% if !@event.private || (@event.private && @event.created_by?(current_user)) %>
-      <% if current_user && @event.upcoming? %>
+    <% if current_user && @event.upcoming? %>
+      <% attending = @event.guest_lists.find { |guest| guest.attendee_id == current_user.id } %>
+      <% if !@event.private || (@event.private && @event.created_by?(current_user)) %>
+          <% if attending %>
+            <%= button_to "Remove Attendance", event_guest_list_path(@event, attending), data: {
+                                  turbo_method: :delete,
+                                  turbo_confirm: "Are you sure?"
+                                } %>
+          <% else %>
+            <%= button_to "Attend", event_guest_lists_path(@event), data: { turbo_method: :post } %>
+          <% end %>
+      <% else %>      
         <% if attending %>
-          <%= button_to "Remove Attendance", event_guest_list_path(@event, attending), data: {
-                                turbo_method: :delete,
-                                turbo_confirm: "Are you sure?"
-                              } %>
-        <% else %>
-          <%= button_to "Attend", event_guest_lists_path(@event), data: { turbo_method: :post } %>
-        <% end %>
-      <% end %>
-    <% else %>      
-      <% if attending %>
-        <% if attending.accepted %>
-          <%= button_to "Decline Invitation", event_guest_list_path(@event, attending, accept: false), method: :patch %>
-        <% else %>
-          <%= button_to "Accept Invitation", event_guest_list_path(@event, attending, accept: true), method: :patch %>
+          <% if attending.accepted %>
+            <%= button_to "Decline Invitation", event_guest_list_path(@event, attending, accept: false), method: :patch %>
+          <% else %>
+            <%= button_to "Accept Invitation", event_guest_list_path(@event, attending, accept: true), method: :patch %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
