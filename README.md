@@ -22,7 +22,7 @@ The home page when signed out.
 
 A user's page, with events displayed by category.
 
-![alt text](readme_resources/user_index.png "a user's page")
+![alt text](readme_resources/user_show.png "a user's page")
 
 The page of a public event when user is signed out.
 
